@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 services:
   client:
@@ -38,7 +38,7 @@ services:
       - ./service/:/usr/src/service
       - /usr/src/service/node_modules
     env_file:
-    - ./service/.env
+      - ./service/.env
     depends_on:
       - db
 
@@ -47,6 +47,6 @@ services:
     image: mongo:4.2
     restart: always
     volumes:
-    - ./service/data/db:/data/db
+      - ./service/data/db:/data/db
     ports:
-    - 27017:27017
+      - 27017:27017
