@@ -1,10 +1,24 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import mongoose from 'mongoose';
 
 import routes from './src/routes/routes';
 
 const app = express();
+
+// Db connection config
+const DB_CONNECT_URL = process.env.DB_CONNECT_URL;
+
+// Connect to db
+mongoose.connect(
+    DB_CONNECT_URL,
+    { useNewUrlParser: true, useFindAndModify: false }
+);
+
+mongoose.connection.once('open', () => {
+    console.log('Connected to database.');
+});
 
 // Use routes
 app.use('/api', routes);
