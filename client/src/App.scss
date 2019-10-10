@@ -1,0 +1,32 @@
+@import "~antd/dist/antd.css";
+
+.app-container {
+  padding: 40px 300px;
+}
+
+/* 
+Tablets, ipads
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .app-container {
+    padding: 40px 80px;
+  }
+}
+
+/* 
+Low resolution tablets, mobiles
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  .app-container {
+    padding: 30px 30px;
+  }
+}
+
+/* 
+Most of the smartphones, mobiles
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .app-container {
+    padding: 20px 15px;
+  }
+}

@@ -1,0 +1,28 @@
+.homepage-container {
+  .logo-wrapper {
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+      color: #595bb9;
+    }
+  }
+
+  .add-item-wrapper {
+    margin-top: 40px;
+    display: flex;
+
+    .add-item-form {
+      width: 100%;
+    }
+  }
+
+  .items {
+    margin-top: 40px;
+
+    h2 {
+      font-size: 25px;
+      font-weight: 600;
+      color: #444;
+    }
+  }
+}
