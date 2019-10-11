@@ -1,3 +1,8 @@
 .items-list-container {
-    margin-top: 60px;
+  margin-top: 40px;
+
+  .items-list {
+    list-style-type: none;
+    padding: 0;
+  }
 }
