@@ -21,7 +21,7 @@ export const fetchItemsStartAsync = () => {
         dispatch(fetchItemsStart());
         
         const fetchItems = async () => {
-            const itemsResponse = await axios.get('https://jsonplaceholder.typicode.com/todos');
+            const itemsResponse = await axios.get('http://localhost/api/items');
             const items = itemsResponse.data;
 
             dispatch(fetchItemsSuccess(items));
