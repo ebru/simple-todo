@@ -1,42 +1,41 @@
-import React, { useState } from 'react';
-import { Form } from 'antd';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-import FormInput from './../../components/FormInput/FormInput';
-import CustomButton from './../../components/CustomButton/CustomButton';
+import { fetchItemsStartAsync } from './../../redux/todo/todo.actions';
+import { selectItems } from './../../redux/todo/todo.selectors';
+
+import AddItemForm from './../AddItemForm/AddItemForm';
+import ItemsList from './../ItemsList/ItemsList';
 
 import './TodoList.scss';
 
-const TodoList = () => {
-    const [item, setItem] = useState('');
+const TodoList = props => {
+    const { fetchItemsStartAsync, items } = props;
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        alert(`Submitting item ${item}`)
-    }
+    useEffect(() => {
+        fetchItemsStartAsync();
+    }, [fetchItemsStartAsync]);
 
     return (
         <div className='todo-list-container'>
-            <Form className='add-item-form' onSubmit={handleSubmit}>
-                <FormInput
-                    label='Add new item'
-                    value={item}
-                    onChange={event => setItem(event.target.value)}
-                    required
-                />
-                <CustomButton
-                    type='primary'
-                    htmlType='submit'
-                    icon='plus'
-                    size='large'
-                    shape='circle'
-                    style={{ backgroundColor: '#595bb9', border: 'None' }}
-                />
-            </Form>
-            <div className='items'>
-                {/* <h2>items</h2> */}
-            </div>
+            <AddItemForm />
+            <ItemsList items={items} />
         </div>
     )
 };
 
-export default TodoList;
+const mapStateToProps = createStructuredSelector({
+    items: selectItems
+});
+
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchItemsStartAsync: () => dispatch(fetchItemsStartAsync())
+    }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(TodoList);
