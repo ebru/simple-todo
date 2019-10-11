@@ -29,8 +29,20 @@ router.post('/items', (req, res) => {
             });
         })
         .catch(err => {
-            res.status(400).send('Could not save to database');
+            res.status(500).send('Could not save to database');
         });
+});
+
+router.delete('/items/:id', (req, res) => {
+    Item.findOneAndRemove({ _id: req.params.id }, (err) => {
+        if (err) {
+            res.status(400).send('Error', err);
+        }
+
+        res.json({
+            'success': true
+        });
+    });
 });
 
 export default router;

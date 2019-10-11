@@ -5,14 +5,12 @@ import ItemCard from './../ItemCard/ItemCard';
 import './ItemsList.scss';
 
 const ItemsList = ({ items }) => {
-    const itemsLatestFirst = items.reverse();
-
     return (
         <div className='items-list-container'>
             <ul className='items-list'>
-                {itemsLatestFirst
+                {items
                     .map(item => (
-                        <ItemCard key={item._id} itemTitle={item.title} />
+                        <ItemCard key={item._id} item={item} />
                     ))}
             </ul>
         </div>
