@@ -1,13 +1,15 @@
 import React from 'react';
 
+import ItemCard from './../ItemCard/ItemCard';
+
 import './ItemsList.scss';
 
 const ItemsList = ({ items }) => (
     <div className='items-list-container'>
-        <ul>
+        <ul className='items-list'>
             {items
                 .map(item => (
-                    <li key={item.id}>{item.title}</li>
+                    <ItemCard key={item.id} itemTitle={item.title} />
                 ))}
         </ul>
     </div>

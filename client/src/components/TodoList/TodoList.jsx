@@ -15,7 +15,7 @@ const TodoList = props => {
 
     useEffect(() => {
         fetchItemsStartAsync();
-    }, [items]);
+    }, [fetchItemsStartAsync]);
 
     return (
         <div className='todo-list-container'>
