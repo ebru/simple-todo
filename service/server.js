@@ -20,13 +20,14 @@ mongoose.connection.once('open', () => {
     console.log('Connected to database.');
 });
 
-// Use routes
-app.use('/api', routes);
-
 // Use body parser
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Use cors
 app.use(cors());
+
+// Use routes
+app.use('/api', routes);
 
 app.listen(5000, () => console.log('Listening on 5000'));

@@ -1,22 +1,18 @@
 .item-card {
-    margin-bottom: 15px;
-    background-color: #fff;
-    border-bottom: 1px #f4f4f4 solid;
-    display: flex;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-bottom: 1px #f4f4f4 solid;
+  display: flex;
+  align-items: center;
+
+  .item-title {
+    flex: 1;
+    padding: 15px 5px;
     align-items: center;
+    font-size: 18px;
+  }
 
-    .item-title {
-        flex: 1;
-        padding: 15px 5px;
-        align-items: center;
-        font-size: 18px;
-    }
-
-    .item-icons {
-        padding: 10px;
-
-        .check-button {
-            margin-right: 7px;
-        }
-    }
+  .check-button {
+    margin-right: 5px;
+  }
 }
