@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
 import { Form } from 'antd';
+import { connect } from 'react-redux';
+
+import { addItemStartAsync } from './../../redux/todo/todo.actions';
 
 import FormInput from './../../components/FormInput/FormInput';
 import CustomButton from './../../components/CustomButton/CustomButton';
 
 import './AddItemForm.scss';
 
-const AddItemForm = () => {
-    const [item, setItem] = useState('');
+const AddItemForm = ({ addItemStartAsync }) => {
+    const [itemTitle, setItemTitle] = useState('');
 
-    const handleSubmit = (event) => {
+    const item = {
+        title: itemTitle,
+        completed: false
+    };
+
+    const handleSubmit = event => {
         event.preventDefault();
-        alert(`Submitting item ${item}`)
-    }
+        addItemStartAsync(item);
+        setItemTitle('');
+    };
 
     return (
         <Form className='add-item-form' onSubmit={handleSubmit}>
             <FormInput
                 label='Add new item'
-                value={item}
-                onChange={event => setItem(event.target.value)}
+                value={itemTitle}
+                onChange={event => setItemTitle(event.target.value)}
                 required
             />
             <CustomButton
@@ -34,4 +43,13 @@ const AddItemForm = () => {
     );
 }
 
-export default AddItemForm;
+const mapDispatchToProps = dispatch => {
+    return {
+        addItemStartAsync: item => dispatch(addItemStartAsync(item))
+    }
+};
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(AddItemForm);
