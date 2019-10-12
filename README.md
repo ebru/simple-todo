@@ -7,3 +7,5 @@ A simple to-do application using React and Node.js.
 - Docker for containerization
 - AWS Elastic Beanstalk
 - MongoDB for database with Mongoose
+
+![Scheme](client/public/assets/images/demo.gif)
