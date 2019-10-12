@@ -34,7 +34,7 @@ const ItemCard = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteItemStartAsync: (_id) => dispatch(deleteItemStartAsync(_id))
+        deleteItemStartAsync: _id => dispatch(deleteItemStartAsync(_id))
     }
 };
 

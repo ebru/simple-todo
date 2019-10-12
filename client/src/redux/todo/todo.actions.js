@@ -39,9 +39,9 @@ export const deleteItemStart = () => ({
     type: todoActionTypes.DELETE_ITEM_START
 });
 
-export const deleteItemSuccess = items => ({
+export const deleteItemSuccess = deletedItemId => ({
     type: todoActionTypes.DELETE_ITEM_SUCCESS,
-    payload: items
+    payload: deletedItemId
 });
 
 export const deleteItemFailure = errorMessage => ({
