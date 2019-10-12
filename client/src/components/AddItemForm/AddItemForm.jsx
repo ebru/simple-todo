@@ -19,6 +19,12 @@ const AddItemForm = ({ addItemStartAsync }) => {
 
     const handleSubmit = event => {
         event.preventDefault();
+
+        if (!itemTitle.trim()) {
+            alert('Please enter an item.');
+            return;
+        }
+
         addItemStartAsync(item);
         setItemTitle('');
     };
