@@ -2,6 +2,12 @@ import axios from 'axios';
 
 import todoActionTypes from './todo.types';
 
+let API_URL = 'http://localhost/api';
+
+if (process.env.NODE_ENV === 'production') {
+    API_URL = 'http://simple-todo.eu-west-1.elasticbeanstalk.com/api'
+}
+
 // Fetch items
 export const fetchItemsStart = () => ({
     type: todoActionTypes.FETCH_ITEMS_START
@@ -23,9 +29,9 @@ export const fetchItemsStartAsync = () => {
 
         const fetchItems = async () => {
             const itemsResponse = await axios.get(
-                'http://localhost/api/items'
+                `${API_URL}/items`
             );
-            
+
             const items = itemsResponse.data;
 
             dispatch(fetchItemsSuccess(items));
@@ -60,7 +66,7 @@ export const deleteItemStartAsync = _id => {
 
         const deleteItem = async () => {
             await axios.delete(
-                `http://localhost/api/items/${_id}`
+                `${API_URL}/items/${_id}`
             );
 
             dispatch(deleteItemSuccess(_id));
@@ -96,7 +102,7 @@ export const addItemStartAsync = item => {
         const addItem = async () => {
             const addItemResponse = await axios({
                 method: 'post',
-                url: 'http://localhost/api/items',
+                url: `${API_URL}/items`,
                 headers: {
                     'Content-Type': 'application/json'
                 },
