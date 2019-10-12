@@ -33,7 +33,6 @@ const ItemCard = props => {
                 onClick={() => updateItemStartAsync(itemToUpdate)}
                 icon={completed ? 'check' : null}
                 shape='circle'
-                style={{ color: '#444', borderSize: '1px' }}
             />
             <div
                 className='item-title'
@@ -45,7 +44,6 @@ const ItemCard = props => {
                 onClick={() => deleteItemStartAsync(_id)}
                 icon='delete'
                 shape='circle'
-                style={{ color: '#aaa', fontSize: '17px', border: 'None' }}
             />
         </li>
     )

@@ -14,6 +14,7 @@
 
   .check-button {
     margin-right: 5px;
+    color: #444;
 
     &:hover {
       border-color: #aaa;
@@ -21,6 +22,16 @@
 
     &:focus {
       border-color: #d9d9d9;
+    }
+  }
+
+  .delete-button {
+    color: #aaa;
+    font-size: 17px; 
+    border: none;
+
+    &:hover {
+      color: #D9170A;
     }
   }
 }
