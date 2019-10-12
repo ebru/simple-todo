@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import todoActionTypes from './todo.types';
 
+// Fetch items
 export const fetchItemsStart = () => ({
     type: todoActionTypes.FETCH_ITEMS_START
 });
@@ -21,7 +22,10 @@ export const fetchItemsStartAsync = () => {
         dispatch(fetchItemsStart());
 
         const fetchItems = async () => {
-            const itemsResponse = await axios.get('http://localhost/api/items');
+            const itemsResponse = await axios.get(
+                'http://localhost/api/items'
+            );
+            
             const items = itemsResponse.data;
 
             dispatch(fetchItemsSuccess(items));
@@ -35,6 +39,7 @@ export const fetchItemsStartAsync = () => {
     };
 };
 
+// Delete item
 export const deleteItemStart = () => ({
     type: todoActionTypes.DELETE_ITEM_START
 });
@@ -49,12 +54,14 @@ export const deleteItemFailure = errorMessage => ({
     payload: errorMessage
 });
 
-export const deleteItemStartAsync = (_id) => {
+export const deleteItemStartAsync = _id => {
     return dispatch => {
         dispatch(deleteItemStart());
 
         const deleteItem = async () => {
-            await axios.delete(`http://localhost/api/items/${_id}`);
+            await axios.delete(
+                `http://localhost/api/items/${_id}`
+            );
 
             dispatch(deleteItemSuccess(_id));
         };
@@ -63,6 +70,48 @@ export const deleteItemStartAsync = (_id) => {
             deleteItem();
         } catch (error) {
             dispatch(deleteItemFailure(error.message));
+        }
+    };
+};
+
+// Add item
+export const addItemStart = () => ({
+    type: todoActionTypes.ADD_ITEM_START
+});
+
+export const addItemSuccess = addedItem => ({
+    type: todoActionTypes.ADD_ITEM_SUCCESS,
+    payload: addedItem
+});
+
+export const addItemFailure = errorMessage => ({
+    type: todoActionTypes.ADD_ITEM_FAILURE,
+    payload: errorMessage
+});
+
+export const addItemStartAsync = item => {
+    return dispatch => {
+        dispatch(addItemStart());
+
+        const addItem = async () => {
+            const addItemResponse = await axios({
+                method: 'post',
+                url: 'http://localhost/api/items',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: item
+            });
+
+            const addedItem = addItemResponse.data.item;
+
+            dispatch(addItemSuccess(addedItem));
+        };
+
+        try {
+            addItem();
+        } catch (error) {
+            dispatch(addItemFailure(error.message));
         }
     };
 };

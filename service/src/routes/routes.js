@@ -25,7 +25,7 @@ router.post('/items', (req, res) => {
         .then(item => {
             res.json({
                 'success': true,
-                'data': item
+                'item': item
             });
         })
         .catch(err => {
