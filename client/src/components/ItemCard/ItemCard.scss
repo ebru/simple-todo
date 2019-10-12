@@ -14,5 +14,13 @@
 
   .check-button {
     margin-right: 5px;
+
+    &:hover {
+      border-color: #aaa;
+    }
+
+    &:focus {
+      border-color: #d9d9d9;
+    }
   }
 }
