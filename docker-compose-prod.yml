@@ -3,14 +3,14 @@ version: "3.7"
 services:
   client:
     container_name: client
-    image: simple-todo_client
+    image: simpletodo_client
     build:
       context: ./
       dockerfile: infra/prod/docker/client/Dockerfile
 
   nginx:
     container_name: nginx
-    image: simple-todo_nginx
+    image: simpletodo_nginx
     restart: always
     build:
       context: ./
@@ -22,7 +22,7 @@ services:
 
   service:
     container_name: service
-    image: simple-todo_service
+    image: simpletodo_service
     build:
       context: ./
       dockerfile: infra/prod/docker/service/Dockerfile

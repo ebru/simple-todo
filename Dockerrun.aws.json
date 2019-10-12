@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "ebrukaya/simpletodo_client",
+            "hostname": "client",
+            "essential": false,
+            "memory": 128
+        },
+        {
+            "name": "nginx",
+            "image": "ebrukaya/simpletodo_nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "client",
+                "service"
+            ],
+            "memory": 128
+        },
+        {
+            "name": "service",
+            "image": "ebrukaya/simpletodo_service",
+            "hostname": "service",
+            "essential": false,
+            "memory": 128
+        }
+    ]
+}
