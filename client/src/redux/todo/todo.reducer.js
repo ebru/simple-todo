@@ -1,6 +1,6 @@
 import todoActionTypes from './todo.types';
 
-import { deleteItem, addItem } from './todo.utils';
+import { deleteItem, addItem, updateItem } from './todo.utils';
 
 const INITIAL_STATE = {
   items: [],
@@ -47,6 +47,20 @@ const todoReducer = (state = INITIAL_STATE, action) => {
         items: addItem(state.items, action.payload)
       };
     case todoActionTypes.ADD_ITEM_FAILURE:
+      return {
+        ...state,
+        errorMessage: action.payload
+      };
+    case todoActionTypes.UPDATE_ITEM_START:
+      return {
+        ...state
+      };
+    case todoActionTypes.UPDATE_ITEM_SUCCESS:
+      return {
+        ...state,
+        items: updateItem(state.items, action.payload)
+      };
+    case todoActionTypes.UPDATE_ITEM_FAILURE:
       return {
         ...state,
         errorMessage: action.payload

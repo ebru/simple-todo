@@ -1,24 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteItemStartAsync } from './../../redux/todo/todo.actions';
+import { deleteItemStartAsync, updateItemStartAsync } from './../../redux/todo/todo.actions';
 
 import CustomButton from './../../components/CustomButton/CustomButton';
 
 import './ItemCard.scss';
 
 const ItemCard = props => {
-    const { deleteItemStartAsync, item: { _id, title } } = props;
+    const {
+        deleteItemStartAsync,
+        updateItemStartAsync,
+        item
+    } = props;
+
+    const { _id, title, completed } = item;
+
+    const itemToUpdate = {
+        ...item,
+        completed: !completed
+    };
+
+    const completedStyle = {
+        color: '#aaa',
+        textDecoration: 'line-through'
+    };
 
     return (
         <li className='item-card'>
             <CustomButton
                 className='check-button'
-                icon='check'
+                onClick={() => updateItemStartAsync(itemToUpdate)}
+                icon={completed ? 'check' : null}
                 shape='circle'
                 style={{ color: '#444', borderSize: '1px' }}
             />
-            <div className='item-title'>
+            <div
+                className='item-title'
+                style={completed ? completedStyle : null}>
                 {title}
             </div>
             <CustomButton
@@ -34,7 +53,8 @@ const ItemCard = props => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteItemStartAsync: _id => dispatch(deleteItemStartAsync(_id))
+        deleteItemStartAsync: _id => dispatch(deleteItemStartAsync(_id)),
+        updateItemStartAsync: itemToUpdate => dispatch(updateItemStartAsync(itemToUpdate))
     }
 };
 

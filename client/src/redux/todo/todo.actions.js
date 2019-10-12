@@ -121,3 +121,52 @@ export const addItemStartAsync = item => {
         }
     };
 };
+
+// Update item
+export const updateItemStart = () => ({
+    type: todoActionTypes.UPDATE_ITEM_START
+});
+
+export const updateItemSuccess = updatedItem => ({
+    type: todoActionTypes.UPDATE_ITEM_SUCCESS,
+    payload: updatedItem
+});
+
+export const updateItemFailure = errorMessage => ({
+    type: todoActionTypes.UPDATE_ITEM_FAILURE,
+    payload: errorMessage
+});
+
+export const updateItemStartAsync = item => {
+    return dispatch => {
+        dispatch(updateItemStart());
+
+        const updateItem = async () => {
+            const { _id, title, completed } = item;
+
+            const itemToUpdate = {
+                title: title,
+                completed: completed
+            };
+
+            const updateItemResponse = await axios({
+                method: 'put',
+                url: `${API_URL}/items/${_id}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: itemToUpdate
+            });
+
+            const updatedItem = updateItemResponse.data.item;
+
+            dispatch(updateItemSuccess(updatedItem));
+        };
+
+        try {
+            updateItem();
+        } catch (error) {
+            dispatch(updateItemFailure(error.message));
+        }
+    };
+};
