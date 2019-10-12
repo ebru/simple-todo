@@ -1,8 +1,6 @@
 # Simple To-do
 A simple to-do application using React and Node.js.
 
-http://simple-todo.eu-west-1.elasticbeanstalk.com
-
 **Technologies used;**
 - React with Redux, Redux Thunk
 - Node.js with Express
