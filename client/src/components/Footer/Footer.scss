@@ -1,0 +1,14 @@
+.footer-container {
+  margin-top: 70px;
+  font-style: italic;
+  font-weight: bold;
+  text-align: right;
+
+  a {
+    color: #7072d6;
+
+    &:hover {
+      color: #595bb9;
+    }
+  }
+}
