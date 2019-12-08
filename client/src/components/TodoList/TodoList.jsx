@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { fetchItemsStartAsync } from './../../redux/todo/todo.actions';
+import { fetchItemsStart } from './../../redux/todo/todo.actions';
 import { selectItems } from './../../redux/todo/todo.selectors';
 
 import AddItemForm from './../AddItemForm/AddItemForm';
@@ -11,11 +11,11 @@ import ItemsList from './../ItemsList/ItemsList';
 import './TodoList.scss';
 
 const TodoList = props => {
-    const { fetchItemsStartAsync, items } = props;
+    const { fetchItemsStart, items } = props;
 
     useEffect(() => {
-        fetchItemsStartAsync();
-    }, [fetchItemsStartAsync]);
+        fetchItemsStart();
+    }, [fetchItemsStart]);
 
     return (
         <div className='todo-list-container'>
@@ -31,7 +31,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchItemsStartAsync: () => dispatch(fetchItemsStartAsync())
+        fetchItemsStart: () => dispatch(fetchItemsStart())
     }
 };
 

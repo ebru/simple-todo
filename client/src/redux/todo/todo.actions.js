@@ -2,11 +2,7 @@ import axios from 'axios';
 
 import todoActionTypes from './todo.types';
 
-let API_URL = 'http://localhost/api';
-
-if (process.env.NODE_ENV === 'production') {
-    API_URL = 'http://simple-todo.eu-west-1.elasticbeanstalk.com/api'
-}
+let API_URL = 'dummy';
 
 // Fetch items
 export const fetchItemsStart = () => ({
